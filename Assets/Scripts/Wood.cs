@@ -19,7 +19,7 @@ public class Wood : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Tool"))
         {
-            int Reminder = woodDurability % 25;
+            int Reminder = woodDurability % 5;
             woodDurability--;
             if (Reminder == 0)
             {

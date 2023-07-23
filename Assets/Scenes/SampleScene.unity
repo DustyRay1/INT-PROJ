@@ -495,7 +495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &819118498
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1014,8 +1014,12 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2039901975162049654, guid: e4e91d6cca4639241b923da552c7c3f9, type: 3}
+      propertyPath: woodShredding
+      value: 
+      objectReference: {fileID: 4564773151041360362, guid: ad1c2c725c5563e488de0fd3ae287284, type: 3}
+    - target: {fileID: 2039901975162049654, guid: e4e91d6cca4639241b923da552c7c3f9, type: 3}
       propertyPath: woodDurability
-      value: 100
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6498707455468129915, guid: e4e91d6cca4639241b923da552c7c3f9, type: 3}
       propertyPath: m_RootOrder

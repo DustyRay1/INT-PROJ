@@ -444,8 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootWood: {fileID: 6746016868049250903, guid: 22334650bbf4a0f43955d2468b561b9f, type: 3}
-  woodShredding: {fileID: 4564773151041360362, guid: ad1c2c725c5563e488de0fd3ae287284, type: 3}
-  woodDurability: 100
+  woodDurability: 25
   RBBush: {fileID: 1712647850047050587}
 --- !u!1 &8288190804107322549
 GameObject:

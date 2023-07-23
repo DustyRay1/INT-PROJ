@@ -5,12 +5,13 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] GameObject BreakBox;
+    bool Digging = true;
     float speed = 2;
     int isWalkingHash;
     int isRunningHash;
     int IsDestroyingHash;
     Animator animator;
-    private void Start() 
+    private void Start()
     {
         animator = GetComponent<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
@@ -24,40 +25,58 @@ public class PlayerMovement : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         float horizontalMouse = Input.GetAxis("Mouse X");
 
-        if(Input.GetKey("w")|Input.GetKey("a")|Input.GetKey("s")|Input.GetKey("d"))
+        if (Input.GetKey("w") | Input.GetKey("a") | Input.GetKey("s") | Input.GetKey("d"))
         {
-            animator.SetBool(isWalkingHash,true);
+            animator.SetBool(isWalkingHash, true);
         }
         else
         {
-            animator.SetBool(isWalkingHash,false);
+            animator.SetBool(isWalkingHash, false);
         }
 
-        if(Input.GetKey(KeyCode.LeftShift)&&animator.GetBool(isWalkingHash))
+        if (Input.GetKey(KeyCode.LeftShift) && animator.GetBool(isWalkingHash))
         {
-            animator.SetBool(isRunningHash,true);
+            animator.SetBool(isRunningHash, true);
             speed = 6;
         }
         else
         {
-            animator.SetBool(isRunningHash,false);
+            animator.SetBool(isRunningHash, false);
             speed = 2;
         }
 
-        if(Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0))
         {
-            animator.SetBool(IsDestroyingHash,true);
-            BreakBox.SetActive(true);
+            animator.SetBool(IsDestroyingHash, true);
             speed = 0;
+            if (Digging)
+            {
+                StartCoroutine(DigSequence());
+                Digging = false;
+                //speed = 0;
+            }
         }
         else
         {
+            Digging = true;
+            StopCoroutine(DigSequence());
             BreakBox.SetActive(false);
-            animator.SetBool(IsDestroyingHash,false);
+            animator.SetBool(IsDestroyingHash, false);
         }
 
         transform.Translate(Vector3.forward * verticalInput * Time.deltaTime * speed);
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
-        transform.Rotate(0,horizontalMouse,0);
+        transform.Rotate(0, horizontalMouse, 0);
+    }
+    IEnumerator DigSequence()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(0.2f);
+            BreakBox.SetActive(true);
+            yield return new WaitForSeconds(0.2f);
+            BreakBox.SetActive(false);
+        }
+
     }
 }
